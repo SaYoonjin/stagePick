@@ -1,0 +1,35 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: stagepick-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: stagepick
+      POSTGRES_USER: stagepick
+      POSTGRES_PASSWORD: stagepick
+    volumes:
+      - stagepick-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U stagepick -d stagepick"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  redis:
+    image: redis:7
+    container_name: stagepick-redis
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - stagepick-redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  stagepick-postgres-data:
+  stagepick-redis-data:

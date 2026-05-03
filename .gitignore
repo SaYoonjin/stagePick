@@ -1,0 +1,30 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Java / Kotlin / Gradle
+.gradle/
+build/
+out/
+*.class
+
+# Node / Next.js
+node_modules/
+.next/
+dist/
+coverage/
+
+# Logs
+*.log
+
+# Docker
+docker-compose.override.yml
